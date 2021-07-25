@@ -22,6 +22,14 @@ namespace StefansSuperShop.Pages
         }
         public List<TrendingCategory> TrendingCategories { get; set; }
 
+        public List<Product> NewProducts { get; set; }
+        public class Product
+        {
+            public int Id { get; set; }
+            public string Name { get; set; }
+        }
+
+
 
         public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context)
         {
