@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StefansSuperShop.Data;
+using System.Globalization;
 
 namespace StefansSuperShop.Pages
 {
@@ -28,11 +29,16 @@ namespace StefansSuperShop.Pages
         {
             var offset = 78;
             var imageData = _context.Categories.Find(id).Picture;
+            
             var bytes = new byte[imageData.Length - offset];
 
             Array.Copy(imageData, offset, bytes, 0, bytes.Length);
+
+            
+
             return File(bytes, "image/png");
         }
+
 
     }
 }
