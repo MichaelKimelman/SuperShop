@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using StefansSuperShop.Data;
 
@@ -11,9 +12,10 @@ using StefansSuperShop.Data;
 namespace StefansSuperShop.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20221215120702_AddedNewsLetterAndSubscriberTables")]
+    partial class AddedNewsLetterAndSubscriberTables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -599,7 +601,7 @@ namespace StefansSuperShop.Migrations
                     b.Property<string>("EmailAdress")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("NewsLettersId")
+                    b.Property<int?>("NewsLettersId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -809,9 +811,7 @@ namespace StefansSuperShop.Migrations
                 {
                     b.HasOne("StefansSuperShop.Data.NewsLetters", "NewsLetters")
                         .WithMany("Subscribers")
-                        .HasForeignKey("NewsLettersId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("NewsLettersId");
 
                     b.Navigation("NewsLetters");
                 });

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Xml.Linq;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using StefansSuperShop.Migrations;
@@ -24,6 +25,66 @@ namespace StefansSuperShop.Data
             SeedUsers();
             SeedCategories();
             SeedProducts();
+            SeedNewsLetters();
+            SeedSubscribers();
+        }
+        // Seeds two newsletters
+        private void SeedNewsLetters()
+        {
+            if (_dbContext.NewsLetters.Any(e => e.Id == 1)) return;
+            _dbContext.NewsLetters.Add(new NewsLetters
+            {
+                Title = "Newsletter 1",
+                Message = "This is our first newsletter!"
+            });
+            _dbContext.NewsLetters.Add(new NewsLetters
+            {
+                Title = "Newsletter 2",
+                Message = "Second newsletter, here be info."
+            });
+            _dbContext.SaveChanges();
+        }
+        // Seeds 6 subscribers which have a newsletter FK to connect them to newsletters
+        private void SeedSubscribers()
+        {
+            if (_dbContext.Subscribers.Any(e => e.Id == 1)) return;
+            _dbContext.Subscribers.Add(new Subscribers
+            {
+                EmailAdress = "sven.svensson@mail.se",
+                NewsLettersId = 1
+                
+            });
+            _dbContext.Subscribers.Add(new Subscribers
+            {
+                EmailAdress = "sven.svensson@mail.se",
+                NewsLettersId = 2
+                
+            });
+            _dbContext.Subscribers.Add(new Subscribers
+            {
+                EmailAdress = "karl.karlsson@mail.se",
+                NewsLettersId = 1
+
+            });
+            _dbContext.Subscribers.Add(new Subscribers
+            {
+                EmailAdress = "anders.andersson@mail.se",
+                NewsLettersId = 2
+
+            });
+            _dbContext.Subscribers.Add(new Subscribers
+            {
+                EmailAdress = "erik.eriksson@mail.se",
+                NewsLettersId = 2
+
+            });
+            _dbContext.Subscribers.Add(new Subscribers
+            {
+                EmailAdress = "mats.matsson@mail.se",
+                NewsLettersId = 1
+
+            });
+            _dbContext.SaveChanges();
         }
 
         private void SeedProducts()
