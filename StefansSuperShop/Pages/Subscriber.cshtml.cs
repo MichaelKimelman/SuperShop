@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 using StefansSuperShop.Data;
 
 namespace StefansSuperShop.Pages
@@ -52,43 +53,87 @@ namespace StefansSuperShop.Pages
         }
         public async Task<IActionResult> OnPostNewsletterLayoutAsync()
         {
-            Subscriber model;
-            var user = _userManager.GetUserAsync(User).Result != null ? _userManager.GetUserAsync(User).Result : null;
 
-            //Kolla om epost är valid(Typ)
-            if (Epost == null)
+            var user = _userManager.GetUserAsync(User).Result;
+
+            Subscriber model;
+
+            //Checka om input valid
+            if(Epost == null)
             {
-                return Page();
-                //return RedirectToPage("./Index");
+                return RedirectToPage("./Index");
             }
-            
-            //Kolla om epost finns registrerad
-            if (!_context.Subscribers.ToList().Exists(x => x.Email == Epost))
-             {
+            //Checka om epost redan finns
+            if (_context.Subscribers.ToList().Exists(x => x.Email == Epost))
+            {
+                return RedirectToPage("./Index");
+            }
+            //Checka user
+
+            if(user != null)
+            {
+                //Checka om User är registrerad
+                if(_context.Subscribers.ToList().Exists(x => x.UserId == user.Id))
+                {
+                    return RedirectToPage("./Index");
+                }//Initialisera modell om inte registrerad
+                else
+                {
+                    model = new Subscriber
+                    {
+                        Email = Epost,
+                        UserId = user.Id,
+                        User = user,
+                    };
+                }
+            }//Initialisera modell utan user
+            else
+            {
                 model = new Subscriber
                 {
                     Email = Epost,
-
                 };
-
-                
-            }
-            else
-            {
-                return Page();
             }
 
-            //Checka om user är invalid
-            if (user != null)
-            {
-                model.User = user;
-                model.UserId = user.Id;
-            }
-            //Checka om user redan är registrerad(Bara tills Newsletter markup tas bort när inloggad och registrerad)
-            if(_context.Subscribers.ToList().Exists(x => x.UserId == user.Id))
-            {
-                return Page();
-            }
+            //var user = _userManager.GetUserAsync(User).Result.Id;
+            //var userList = await _context.Users.ToListAsync();
+
+            ////Kolla om epost är valid(Typ)
+            //if (Epost == null)
+            //{
+            //    return Page();
+            //    //return RedirectToPage("./Index");
+            //}
+
+            ////Kolla om epost finns registrerad
+            //if (!_context.Subscribers.ToList().Exists(x => x.Email == Epost))
+            // {
+            //    model = new Subscriber
+            //    {
+            //        Email = Epost,
+
+            //    };
+
+
+            //}
+            //else
+            //{
+            //    return Page();
+            //}
+
+            ////Checka om user är invalid
+            //if (user != null)
+            //{
+            //    //Checka om user redan är registrerad(Bara tills Newsletter markup tas bort när inloggad och registrerad)
+            //    //if (_context.Subscribers.ToList().Exists(x => x.UserId == user.Id))
+            //    //{
+            //    //    return Page();
+            //    //}
+
+            //    //model.User = user;
+            //    //model.UserId = user.Id;
+            //}
+
 
 
             _context.Subscribers.Add(model);
