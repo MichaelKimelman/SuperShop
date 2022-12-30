@@ -63,13 +63,14 @@ namespace StefansSuperShop.Pages
             {
                 return RedirectToPage("./Index");
             }
+
             //Checka om epost redan finns
             if (_context.Subscribers.ToList().Exists(x => x.Email == Epost))
             {
                 return RedirectToPage("./Index");
             }
-            //Checka user
 
+            //Checka user
             if(user != null)
             {
                 //Checka om User är registrerad
@@ -94,47 +95,6 @@ namespace StefansSuperShop.Pages
                     Email = Epost,
                 };
             }
-
-            //var user = _userManager.GetUserAsync(User).Result.Id;
-            //var userList = await _context.Users.ToListAsync();
-
-            ////Kolla om epost är valid(Typ)
-            //if (Epost == null)
-            //{
-            //    return Page();
-            //    //return RedirectToPage("./Index");
-            //}
-
-            ////Kolla om epost finns registrerad
-            //if (!_context.Subscribers.ToList().Exists(x => x.Email == Epost))
-            // {
-            //    model = new Subscriber
-            //    {
-            //        Email = Epost,
-
-            //    };
-
-
-            //}
-            //else
-            //{
-            //    return Page();
-            //}
-
-            ////Checka om user är invalid
-            //if (user != null)
-            //{
-            //    //Checka om user redan är registrerad(Bara tills Newsletter markup tas bort när inloggad och registrerad)
-            //    //if (_context.Subscribers.ToList().Exists(x => x.UserId == user.Id))
-            //    //{
-            //    //    return Page();
-            //    //}
-
-            //    //model.User = user;
-            //    //model.UserId = user.Id;
-            //}
-
-
 
             _context.Subscribers.Add(model);
             await _context.SaveChangesAsync();
