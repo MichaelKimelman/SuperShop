@@ -169,8 +169,9 @@
                 <div class="col-md-12">
                     <div class="newsletter">
                         <p>Sign Up for the <strong>NEWSLETTER</strong></p>
-                        <form>
-                            <input class="input" type="email" placeholder="Enter Your Email">
+                        <form method="post" asp-page="/Subscriber" asp-page-handler="NewsletterLayout">
+                            <input class="input" type="email" placeholder="Enter Your Email" name="epost">
+                            @Html.AntiForgeryToken();
                             <button class="newsletter-btn"><i class="fa fa-envelope"></i> Subscribe</button>
                         </form>
                         <ul class="newsletter-follow">
