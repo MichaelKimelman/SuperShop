@@ -109,18 +109,28 @@ ul, ol {
   color: #FFF;
 }
 
+.form-inline button {
+    color: white;
+    font-size: 12px;
+    padding: 0px;
+}
+
+.form-inline button:hover {
+    color:red;
+}
+.form-inline button:focus {
+    color:red;
+}
 /*----------------------------*\
 	Inputs
 \*----------------------------*/
-
 /*-- Text input --*/
-
 .input {
-  height: 40px;
-  padding: 0px 15px;
-  border: 1px solid #E4E7ED;
-  background-color: #FFF;
-  width: 100%;
+    height: 40px;
+    padding: 0px 15px;
+    border: 1px solid #E4E7ED;
+    background-color: #FFF;
+    width: 100%;
 }
 
 textarea.input {
