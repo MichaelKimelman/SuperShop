@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StefansSuperShop.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<ExtendedUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -68,5 +68,6 @@ namespace StefansSuperShop.Data
         public virtual DbSet<Newsletter> Newsletters { get; set; }
         public virtual DbSet<Subscriber> Subscribers { get; set; }
         public virtual DbSet<NewsletterSubscriber> NewsletterSubscribers { get; set; }
+        public virtual DbSet<Wishlist> Wishlist { get; set; }
     }
 }

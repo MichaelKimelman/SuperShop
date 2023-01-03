@@ -10,9 +10,9 @@ namespace StefansSuperShop.Data
     public class DataInitializer
     {
         private readonly ApplicationDbContext _dbContext;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ExtendedUser> _userManager;
 
-        public DataInitializer(ApplicationDbContext dbContext, UserManager<IdentityUser> userManager)
+        public DataInitializer(ApplicationDbContext dbContext, UserManager<ExtendedUser> userManager)
         {
             _dbContext = dbContext;
             _userManager = userManager;
@@ -214,7 +214,7 @@ namespace StefansSuperShop.Data
         {
             if (_userManager.FindByEmailAsync(userName).Result != null) return;
 
-            var user = new IdentityUser
+            var user = new ExtendedUser
             {
                 UserName = userName,
                 Email = userName,

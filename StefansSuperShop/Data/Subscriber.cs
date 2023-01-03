@@ -13,7 +13,7 @@ namespace StefansSuperShop.Data
         [EmailAddress]
         public string Email { get; set; }
         public string? UserId { get; set; }
-        public IdentityUser? User { get; set; }
+        public ExtendedUser? User { get; set; }
         public virtual ICollection<Newsletter> Newsletters { get; set; }
     }
 }

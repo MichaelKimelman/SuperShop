@@ -16,10 +16,10 @@ namespace StefansSuperShop.Pages
     public class SubscriberModel : PageModel
     {
         private readonly StefansSuperShop.Data.ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<ExtendedUser> _userManager;
+        private readonly SignInManager<ExtendedUser> _signInManager;
 
-        public SubscriberModel(StefansSuperShop.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public SubscriberModel(StefansSuperShop.Data.ApplicationDbContext context, UserManager<ExtendedUser> userManager, SignInManager<ExtendedUser> signInManager)
         {
             _context = context;
             _userManager = userManager;
