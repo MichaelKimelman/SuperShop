@@ -17,11 +17,17 @@
         @foreach (var p in Model.Products)
         {
             <tr >
+                    <td>@p.Id</td>
                 <td >@p.Name</td>
                 <td>@p.Price</td>
                 <td>@p.Stocklevel</td>
                 <td>
                         <a class="btn btn-primary " role="button" href="/admin/productedit?id=@p.Id">Edit</a>
+                </td>
+                <td>
+                        <form method="post" asp-page="/Wishlist" asp-page-handler="Create" asp-route-productId="@p.Id">
+                        <button type="submit" >Add to wishlist</button>
+                        </form>
                 </td>
             </tr>
 

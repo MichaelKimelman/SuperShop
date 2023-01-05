@@ -53,6 +53,17 @@ namespace StefansSuperShop.Data
                     new { Id = 7, NewsletterId = 2, SubscriberId = 5},
                     new { Id = 8, NewsletterId = 2, SubscriberId = 6}
                     );
+            modelBuilder.Entity<Wishlist>()//Ändra varje gång ny databas med nya UserID:n ELLER lägg till unikt Id för users i DataInitialiser
+                .HasData(
+                    new { Id = 1, ExtendedUserId = "80e9ddc5-feec-4624-87d8-6000c82c0ef4", ProductId = 1 },
+                    new { Id = 2, ExtendedUserId = "80e9ddc5-feec-4624-87d8-6000c82c0ef4", ProductId = 2 },
+                    new { Id = 3, ExtendedUserId = "80e9ddc5-feec-4624-87d8-6000c82c0ef4", ProductId = 3 },
+                    new { Id = 4, ExtendedUserId = "80e9ddc5-feec-4624-87d8-6000c82c0ef4", ProductId = 4 },
+                    new { Id = 5, ExtendedUserId = "eba557ce-b4ad-42cc-a6be-7e80d2b304d1", ProductId = 1 },
+                    new { Id = 6, ExtendedUserId = "eba557ce-b4ad-42cc-a6be-7e80d2b304d1", ProductId = 2 },
+                    new { Id = 7, ExtendedUserId = "eba557ce-b4ad-42cc-a6be-7e80d2b304d1", ProductId = 5 },
+                    new { Id = 8, ExtendedUserId = "eba557ce-b4ad-42cc-a6be-7e80d2b304d1", ProductId = 6 }
+                    );
 
         }
 
