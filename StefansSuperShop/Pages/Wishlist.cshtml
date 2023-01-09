@@ -11,11 +11,11 @@
 <h2>Wishlist</h2>
 @if (signInManager.IsSignedIn(User))
 {
-    <h2>@Model._User.Email</h2>
+    @*<h2>@Model._User.Id</h2>*@
     @foreach( var item in Model.Wishlist)
     {
         <h2> @item.Name</h2>
-        <form method="post" >
+        <form method="post" asp-page="/Wishlist" asp-page-handler="Delete" asp-route-wishlistItemId="@item.Id">
             <button type="submit">Remove from wishlist</button>
         </form>
     }
