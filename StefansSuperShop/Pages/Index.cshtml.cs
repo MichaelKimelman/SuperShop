@@ -9,7 +9,7 @@ using StefansSuperShop.Data;
 
 namespace StefansSuperShop.Pages
 {
-    public class IndexModel : PageModel
+    public class IndexModel : BasePageModel
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly ApplicationDbContext _context;
@@ -31,7 +31,7 @@ namespace StefansSuperShop.Pages
 
 
 
-        public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context)
+        public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context):base(logger,context)
         {
             _logger = logger;
             _context = context;

@@ -13,18 +13,21 @@ using StefansSuperShop.Data;
 
 namespace StefansSuperShop.Pages
 {
-    public class SubscriberModel : PageModel
+    public class SubscriberModel : BasePageModel
     {
         private readonly StefansSuperShop.Data.ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
 
-        public SubscriberModel(StefansSuperShop.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public SubscriberModel(StefansSuperShop.Data.ApplicationDbContext context, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager) : base(context,userManager,signInManager)
         {
             _context = context;
             _userManager = userManager;
             _signInManager = signInManager;
+
         }
+
+
 
         public IActionResult OnGet()
         {
@@ -76,6 +79,7 @@ namespace StefansSuperShop.Pages
                 //Checka om User är registrerad
                 if(_context.Subscribers.ToList().Exists(x => x.UserId == user.Id))
                 {
+
                     return RedirectToPage("./Index");
                 }//Initialisera modell om inte registrerad
                 else

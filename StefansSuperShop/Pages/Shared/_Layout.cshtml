@@ -1,4 +1,4 @@
-﻿
+﻿@model BasePageModel
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,7 +161,9 @@
     </div>
     <!-- /SECTION -->
     <!-- NEWSLETTER -->
-    <div id="newsletter" class="section">
+    @if(Model.IsAlreadySubscriber == false)
+    {
+        <div id="newsletter" class="section">
         <!-- container -->
         <div class="container">
             <!-- row -->
@@ -195,6 +197,7 @@
         </div>
         <!-- /container -->
     </div>
+    }
     <!-- /NEWSLETTER -->
     <!-- FOOTER -->
     <footer id="footer">
