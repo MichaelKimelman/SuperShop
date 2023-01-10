@@ -1,0 +1,27 @@
+﻿@page
+@model StefansSuperShop.Pages.Admin.Newsletters.ShowModel
+@{
+}
+<div class="container">
+    <h1>Newsletter sent to:</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Email</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.Emails)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Email</td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+    <a href="/admin/newsletters/index" class="btn btn-primary btn-lg " role="button">Back</a>
+</div>
