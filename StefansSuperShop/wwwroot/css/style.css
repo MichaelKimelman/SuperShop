@@ -19,6 +19,7 @@ Table OF Contents
 ------ Inputs
 ------ Sections
 ------ Breadcrumb
+------ Contactus
 2 > HEADER
 ------ Top header
 ------ Logo
@@ -411,6 +412,29 @@ textarea.input {
 #breadcrumb .breadcrumb-tree li a:hover {
   color: #D10024;
 }
+
+/*----------------------------*\
+	Contactus
+\*----------------------------*/
+.contact-us h1 {
+    font-weight: 700;
+    
+}
+.contact-us input {
+    width: 600px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+.contact-us textarea {
+    width:600px;
+    height: 200px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+
 
 /*=========================================================
 	02 -> HEADER
