@@ -20,16 +20,6 @@ namespace StefansSuperShop.Pages.ContactUs
 			var subject = Request.Form["subject"];
 			var text = Request.Form["text"];
 			ViewData["confirmation"] = $"Thank you for your message.We will contact you in 2-3 working days";
-#if RELEASE
-			SendEmailMailTrap(name, email, subject, text);
-#endif
-
-
-#if DEBUG
-			SendEmailEthereal(name, email, subject, text);
-#endif
-
-#if RELEASE
 
             #if DEBUG
             SendEmailEthereal(name, email, subject, text);
