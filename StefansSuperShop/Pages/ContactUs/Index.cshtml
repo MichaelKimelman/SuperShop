@@ -1,0 +1,34 @@
+﻿@page
+@model StefansSuperShop.Pages.ContactUs.IndexModel
+@{
+
+
+}
+    <div class="contactuspage">
+
+    <form class="contact-us" method="post">
+
+        <h3>@ViewData["confirmation"]</h3>
+        <h1>Contact us</h1>
+        <div>
+            <input type="text" pattern="[a-zA-Z0-9\s]+" minlength="3" maxlength="50" name="name" placeholder="Full name" required>
+        </div>
+
+        <div>
+            <input type="email" minlength="10" maxlength="50" name="email" placeholder="Email" required>
+        </div>
+
+        <div>
+            <input type="text" pattern="[a-zA-Z0-9\s]+" minlength="3" maxlength="50" name="subject" placeholder="Subject" required>
+        </div>
+        <div>
+            <textarea minlength="3" pattern="[a-zA-Z0-9\s]+" maxlength="255" name="text" placeholder="Message" required></textarea>
+        </div>
+
+        <div class="contactusbutton">
+            <a href="/Index" class="btn btn-primary " role="button">Back</a>
+            <button type="submit" class="btn btn-primary" aria-hidden="true">Send</button>
+        </div>
+
+    </form>
+    </div>

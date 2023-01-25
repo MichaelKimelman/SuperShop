@@ -6,8 +6,8 @@ namespace StefansSuperShopTests
         [TestMethod]
         public void TestMethod1()
         {
-            //
             //Assign
+            //Act
             //Assert
         }
     }

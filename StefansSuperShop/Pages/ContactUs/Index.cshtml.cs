@@ -22,7 +22,12 @@ namespace StefansSuperShop.Pages.ContactUs
             var text = Request.Form["text"];
             ViewData["confirmation"] = $"Thank you for your message.We will contact you in 2-3 working days";
 
+            #if DEBUG
             SendEmailEthereal(name, email, subject, text);
+            #endif
+            #if RELEASE
+            SendEmailMailTrap(name, email, subject, text);
+            #endif
         }
 
         public bool SendEmailMailTrap(string name, string email, string subject, string text)
