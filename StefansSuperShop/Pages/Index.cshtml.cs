@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using StefansSuperShop.Data;
 using StefansSuperShop.Services;
+using System.Diagnostics;
 
 namespace StefansSuperShop.Pages
 {
@@ -52,8 +53,11 @@ namespace StefansSuperShop.Pages
             _krisInfoService = krisInfoService;
         }
 
+        [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client)]
         public void OnGet()
         {
+            Stopwatch sw = Stopwatch.StartNew();
+            sw.Start();
             TrendingCategories = _context.Categories.Take(3).Select(c =>
                 new TrendingCategory { Id = c.CategoryId, Name = c.CategoryName }
             ).ToList();
@@ -66,6 +70,8 @@ namespace StefansSuperShop.Pages
 
 
             }).Take(10).ToList();
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds);
 
 
         }

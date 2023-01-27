@@ -31,6 +31,7 @@ public class Startup
         services.AddTransient<DataInitializer>();
         services.AddRazorPages();
         services.AddTransient<IKrisInfoService, KrisInfoService>();
+        services.AddResponseCaching();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -51,6 +52,7 @@ public class Startup
         app.UseStaticFiles();
 
         app.UseRouting();
+        app.UseResponseCaching();
 
         app.UseAuthentication();
         app.UseAuthorization();
