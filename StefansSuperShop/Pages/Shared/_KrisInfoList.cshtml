@@ -1,19 +1,27 @@
 ﻿@model List<IndexModel.KrisListItem>
 <!-- row -->
-<div class="row">
 
-    <ul>
-        
-        @foreach (var item in Model)
-        {
-            <a asp-page="/KrisInfoArticle" asp-route-articleid="@item.Id">
-                <h2>@item.Title</h2>
-                <img src="@item.ImageUrl" width="300" height="200">
-            </a>
-        }
+<div class="section">
+    <div class="container">
+        <div class="row">
+             <h1>Krisinformation:</h1>
+            <div class="grid-container">
+                @foreach (var item in Model)
+                {
+                    <div class="singlekris">
+
+                        <a asp-page="/KrisInfoArticle" asp-route-articleid="@item.Id">
+                            <h2>@item.Title</h2>
+                            <img src="@item.ImageUrl">
+                        </a>
+                    </div>
+
+                }
+            </div>
 
 
-    </ul>
+        </div>
+    </div>
 </div>
 
 
