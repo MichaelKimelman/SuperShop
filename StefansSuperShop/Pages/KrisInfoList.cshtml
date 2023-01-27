@@ -1,11 +1,10 @@
-﻿@page
-@model StefansSuperShop.Pages.KrisInfoListModel
+﻿@model List<IndexModel.KrisListItem>
 @{
 }
 
 <ul>
-
-    @foreach (var item in Model.Items)
+    
+    @foreach (var item in Model)
     {
         <a asp-page="/KrisInfoArticle" asp-route-articleid="@item.Id">
         <h2>@item.Title</h2>
