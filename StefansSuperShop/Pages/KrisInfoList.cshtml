@@ -1,0 +1,19 @@
+﻿@page
+@model StefansSuperShop.Pages.KrisInfoListModel
+@{
+}
+
+<ul>
+
+    @foreach (var item in Model.Items)
+    {
+        <a asp-page="/KrisInfoArticle" asp-route-articleid="@item.Id">
+        <h2>@item.Title</h2>
+        <img src="@item.ImageUrl" width="300" height="200">
+        </a>
+    }
+
+
+</ul>
+
+

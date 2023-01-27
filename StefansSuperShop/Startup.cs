@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using StefansSuperShop.Data;
+using StefansSuperShop.Services;
 
 namespace StefansSuperShop;
 
@@ -29,6 +30,7 @@ public class Startup
             .AddEntityFrameworkStores<ApplicationDbContext>();
         services.AddTransient<DataInitializer>();
         services.AddRazorPages();
+        services.AddTransient<IKrisInfoService, KrisInfoService>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

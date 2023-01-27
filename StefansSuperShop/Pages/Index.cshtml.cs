@@ -43,5 +43,7 @@ namespace StefansSuperShop.Pages
                 new TrendingCategory { Id = c.CategoryId, Name = c.CategoryName }
             ).ToList();
         }
+
+
     }
 }
