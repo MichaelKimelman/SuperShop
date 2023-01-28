@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using StefansSuperShop.Data;
+using StefansSuperShop.Services;
+using System.Diagnostics;
 
 namespace StefansSuperShop.Pages
 {
@@ -13,6 +15,7 @@ namespace StefansSuperShop.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private readonly ApplicationDbContext _context;
+        public readonly IKrisInfoService _krisInfoService;
 
 
         public class TrendingCategory
@@ -30,18 +33,50 @@ namespace StefansSuperShop.Pages
         }
 
 
+ 
+        public List<KrisListItem> Items { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context)
+        public class KrisListItem
+        {
+            public string Id { get; set; }
+            public string Title { get; set; }
+            public string ImageUrl { get; set; }
+
+        }
+
+
+
+        public IndexModel(ILogger<IndexModel> logger, ApplicationDbContext context, IKrisInfoService krisInfoService)
         {
             _logger = logger;
             _context = context;
+            _krisInfoService = krisInfoService;
         }
 
+        [ResponseCache(Duration = 3600, Location = ResponseCacheLocation.Client)]
         public void OnGet()
         {
+            Stopwatch sw = Stopwatch.StartNew();
+            sw.Start();
             TrendingCategories = _context.Categories.Take(3).Select(c =>
                 new TrendingCategory { Id = c.CategoryId, Name = c.CategoryName }
             ).ToList();
+
+            Items = _krisInfoService.GetAllKrisInformation().Select(r => new KrisListItem
+            {
+                Id = r.Id,
+                Title = r.Title,
+                ImageUrl = r.ImageUrl
+
+
+            }).Take(10).ToList();
+            sw.Stop();
+            Console.WriteLine(sw.ElapsedMilliseconds);
+
+
         }
-    }
+
+
+
+}
 }
