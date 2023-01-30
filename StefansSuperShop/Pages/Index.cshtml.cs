@@ -62,7 +62,7 @@ namespace StefansSuperShop.Pages
                 new TrendingCategory { Id = c.CategoryId, Name = c.CategoryName }
             ).ToList();
 
-            Items = _krisInfoService.GetAllKrisInformation().Select(r => new KrisListItem
+            Items = _krisInfoService.GetAllKrisInformation().OrderByDescending(i => i.Id).Select(r => new KrisListItem
             {
                 Id = r.Id,
                 Title = r.Title,
